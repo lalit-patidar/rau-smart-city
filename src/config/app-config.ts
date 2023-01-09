@@ -1,4 +1,4 @@
-const APP_CONFIG = {    
+export const APP_CONFIG = {    
     PORT: process.env.PORT,
     JWT_ADMIN: process.env.JWT_SECRET_KEY_ADMIN,
     JWT_VENDOR: process.env.JWT_SECRET_KEY_VENDOR,
@@ -7,4 +7,3 @@ const APP_CONFIG = {
     DB_URL: process.env.DB_URL,
 }
 
-module.exports = APP_CONFIG;

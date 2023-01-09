@@ -1,4 +1,4 @@
-exports.appConstants = {
+export const appConstants = {
     errors: {
       dbErrors: {
           mongodbDuplicateErrCode: 11000,
