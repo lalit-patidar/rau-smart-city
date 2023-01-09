@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && ts",
-    "start": "npm run build && node ./dist/index.js",
-    "dev": "ts-node-dev --respawn ./src/index.ts"
+    "start": "npm run build && node ./dist/bin/www",
+    "dev": "ts-node-dev --respawn ./src/bin/www.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

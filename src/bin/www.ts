@@ -3,8 +3,10 @@ import http from 'http';
 import {APP_CONFIG} from "../config/app-config";
 
 // Get port from environment and store in Express.
-const port = normalizePort(APP_CONFIG.PORT || '3000');
+const port = APP_CONFIG.PORT || '3000';
 app.set('port', port);
 
 // Create HTTP server.
 const server = http.createServer(app);
+
+
