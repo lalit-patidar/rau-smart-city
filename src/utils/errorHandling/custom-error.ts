@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const HttpResponse = require("../../utils/httpResponse/all-http-response");
-const { appConstants } = require("../../../config/app-constants/constants");
-const { object } = require("joi");
+import mongoose from "mongoose";
+import HttpResponse from "../httpResponse/all-http-response";
+import { appConstants } from "../../../config/app-constants/constants";
+import { object } from "joi";
 
 const { errors: { dbErrors, errorName, errorMessage } } = appConstants;
 
@@ -63,4 +63,4 @@ const traceAndThrowError = (error) => {
     }
 };
 
-module.exports = traceAndThrowError;
+export default traceAndThrowError;

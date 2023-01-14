@@ -1,8 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-// require("../config/db/setup");
-const expressGlobalErrorHandling = require("./utils/errorHandling/express-global-err-handling");
+import express from 'express';
+ import helmet from 'helmet';
+ import cors from 'cors';
+import './config/db/setup';
+import expressGlobalErrorHandling from "./utils/errorHandling/express-global-err-handling";
 
 
 const app = express()
@@ -11,6 +11,6 @@ app.use(express.json());
 app.use(helmet())
 app.use(cors());
 app.use(expressGlobalErrorHandling)
-
+ 
 export default app;
 

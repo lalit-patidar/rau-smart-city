@@ -1,7 +1,7 @@
-const joi = require("joi");
-
+import joi from "joi";
 
 class ProductValidation {
+    newProductValidationSchema;
     constructor() {
         this.newProductValidationSchema = joi.object({
             productName: joi.string().required().min(2).max(500),
@@ -12,5 +12,4 @@ class ProductValidation {
 
 const productValidationObject = new ProductValidation()
 
-
-module.exports = productValidationObject;
+export default productValidationObject;

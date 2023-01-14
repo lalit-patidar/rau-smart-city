@@ -1,8 +1,8 @@
-const adminValidation = require("./admin-validation-schema");
-const vendoreValidation = require("./vendor-validation-schema");
-const productValidation = require("./product-body-validation")
+import adminValidation from "./admin-validation-schema";
+import vendoreValidation from "./vendor-validation-schema";
+import productValidation from "./product-body-validation"
 
-const validation = (validationType, data) => {
+const validation = (validationType:string, data:any) => {
     switch(validationType) {
         case "adminLogin": return adminValidation.adminLoginValidationSchema.validateAsync(data, {abortEarly: false});
         case "adminSignup": return adminValidation.adminSignupValidationSchema.validateAsync(data, {abortEarly: false});
@@ -15,4 +15,4 @@ const validation = (validationType, data) => {
     }
 };
 
-module.exports = validation;
+export default validation;

@@ -1,7 +1,10 @@
-const joi = require("joi");
+import joi from "joi";
 
 
 class VendorValidation {
+    vendoreSignupValidationSchema;
+    vendoreLoginValidationSchema;
+
     constructor() {
         this.vendoreSignupValidationSchema = joi.object({
             vendorName: joi.string().required().min(5).max(100),
@@ -20,5 +23,4 @@ class VendorValidation {
 
 const adminValidationObject = new VendorValidation()
 
-
-module.exports = adminValidationObject;
+export default adminValidationObject;
