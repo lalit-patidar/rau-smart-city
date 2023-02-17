@@ -2,7 +2,7 @@ import userValidation from "./user-validation-schema";
 import complaintBody from ".";
 import productValidation from "./product-body-validation"
 
-const validation = (validationType:string, data:any) => {
+const validation = (validationType:string, data:any): any => {
     switch(validationType) {
         case "userLogin": return userValidation.userLoginValidationSchema.validateAsync(data, {abortEarly: false});
         case "userSignup": return userValidation.userSignupValidationSchema.validateAsync(data, {abortEarly: false});
