@@ -1,11 +1,13 @@
 import {Router} from "express";
-import {signupUserController, loginUserController, updateUserProfileController, deleteUserProfileController} from "./user-controller";
-const adminAuth = require("../../middlewares/admin/admin-auth");
-const adminReqBodyAuth = require("../../middlewares/admin/admin-body-validation");
+import { userReqBodyValidation } from "../../middlewares/request-body-validation";
+import { userAuthMiddleware } from "./middleware/user-auth";
+import {signupUserController, loginUserController, updateUserProfileController, confirmNewUserController} from "./user-controller";
 
-export const userRouter =  Router();
+const userRouter =  Router();
 
-userRouter.post("/signup-admin/:id/secure", userReqBodyAuth, signupUserController);
-userRouter.post("/login-admin/:id/secure", userReqBodyAuth, loginUserController);
-userRouter.patch("/update-admin/:id/secure", userReqBodyAuth, userAuthMiddleware, updateUserProfileController);
-userRouter.delete("/remove-admin/:id/secure", userReqBodyAuth, userAuthMiddleware, deleteUserProfileController);
+userRouter.post("/signup-user/:userAuthId/secure", userReqBodyValidation, signupUserController);
+userRouter.post("/confirm-user/:userAuthId/secure",userReqBodyValidation, userAuthMiddleware, confirmNewUserController);
+userRouter.post("/login-user/:userAuthId/secure", userReqBodyValidation, loginUserController);
+userRouter.patch("/update-user/:userAuthId/secure", userReqBodyValidation, userAuthMiddleware, updateUserProfileController);
+
+export default userRouter;

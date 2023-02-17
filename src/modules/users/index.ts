@@ -1,3 +1,5 @@
-import userApis from "./user-api";
+import userRouter from "./user-api";
 
-export default userApis;
+export default userRouter;
+
+
