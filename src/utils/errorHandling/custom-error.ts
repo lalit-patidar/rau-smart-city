@@ -7,9 +7,12 @@ const { errors: { dbErrors, errorName, errorMessage } } = appConstants;
 /// need to handle error properly...
 
 const traceAndThrowError = (error: any) => {
+    console.log(error, "this")
     let errors;
     let dbValidationFailedError = error.message.includes(dbErrors.accountNotFound) ? "email" : error.message.includes(dbErrors.invalidPassword) ? "password" : null;
-    if (error instanceof Error) console.log("error is found ....", error.name)
+    if (error instanceof Error) {
+        //use here 
+    }
     if (error instanceof mongoose.Error.ValidationError) {
         errors = Object.keys(error.errors).map(errorKey => {
             return {

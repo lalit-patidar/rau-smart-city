@@ -5,6 +5,7 @@ import {Request, Response, NextFunction} from "express"
 
 const signupUserController = async (req: Request, res: Response, next: NextFunction) => {
    try {
+      console.log('signup is hiting')
     //@ts-ignore
       const {sessionId, token} = await UserCreadentialServicesInstance.createUser(req.validatedBody);
       const responseBody = HttpResponse.created({sessionId, token}, null);
@@ -17,6 +18,7 @@ const signupUserController = async (req: Request, res: Response, next: NextFunct
 };
 
 const confirmNewUserController = async (req: Request, res: Response, next: NextFunction) => {
+   console.log('confirm is hiting')
    try {
     //@ts-ignore
       const { user, token } = await UserCreadentialServicesInstance.confirmUser(req.validatedBody, req.user, req.validatedBody.type);
@@ -30,6 +32,7 @@ const confirmNewUserController = async (req: Request, res: Response, next: NextF
 };
 
 const loginUserController = async (req: Request, res: Response, next: NextFunction) => {
+   console.log('login is hiting')
    try {
     //@ts-ignore
       const { sessionId, token } = await UserCreadentialServicesInstance.loginUser(req.validatedBody);

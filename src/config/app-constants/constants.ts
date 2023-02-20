@@ -15,7 +15,7 @@ export const appConstants = {
            ApiAccessDenied: "Api Access Denied",
            UnproccessedBody: "Invalid Request Body",
            invalidEmail: "Email is invalid",
-           AuthenticationFailed: "User Authentication failed"
+           AuthenticationFailed: "User Authentication failed",
        },
     },
     httpCode: {

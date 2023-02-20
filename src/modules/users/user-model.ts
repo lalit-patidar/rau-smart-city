@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import {APP_CONFIG} from "../../config/app-config";
 import Axios from "axios"
+import {appConstants} from "../../config/app-constants/constants"
+
+const {errors: {dbErrors: {accountNotFound}}} = appConstants
 
 const userSchema = new mongoose.Schema({
   userName: {
@@ -52,6 +55,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.virtual('complaints', {
+  ref: 'Complaint',
+  localField: '_id',
+  foreignField: 'owner',
+});
+
 // that method apply on  every single user
 
 userSchema.methods.toJSON = function () {
@@ -64,6 +73,9 @@ userSchema.methods.toJSON = function () {
 
   return userObject;
 };
+
+userSchema.set('toObject', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
@@ -78,7 +90,7 @@ userSchema.statics.findByCreadentials = async (phoneNumber: any) => {
     const user = await User.findOne({ phoneNumber });
 
   if (!user || !user.registrationConfirmed) {
-    throw new Error("unable to login");
+    throw new Error(accountNotFound);
   }
 
   const { data } = await Axios.get(
@@ -87,16 +99,18 @@ userSchema.statics.findByCreadentials = async (phoneNumber: any) => {
 
 
   if (data.Status !== 'Success') {
-    throw new Error("unable to login");
+    throw new Error("Unable to send Otp");
   }
 
   return {data, user}
   } catch (err) {
-    throw new Error("unable to login");
+    //@ts-ignore
+    let message: string = err.message;
+    throw new Error(message);
   }
 };
 
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

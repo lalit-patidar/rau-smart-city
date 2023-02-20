@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import User from '../user-model';
-import {APP_CONFIG} from "../../../config/app-config"
-import traceAndThrowError from '../../../utils/errorHandling/custom-error'
-import {appConstants} from "../../../config/app-constants/constants";
+import User from '../modules/users/user-model';
+import {APP_CONFIG} from "../config/app-config"
+import traceAndThrowError from '../utils/errorHandling/custom-error'
+import {appConstants} from "../config/app-constants/constants";
 import {Request, Response, NextFunction} from "express"
 
 const {errors: {errorMessage}} = appConstants;
@@ -17,7 +17,6 @@ export const userAuthMiddleware = async (req: Request, res: Response, next: Next
             _id: decoded._id,
             "tokens.token": token
         });
-        console.log(user, 'auth..')
 
         if(!user) throw new Error(errorMessage.AuthenticationFailed);
         

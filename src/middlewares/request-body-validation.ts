@@ -8,6 +8,7 @@ const {errors: {errorMessage}} = appConstants;
 const {USER_ACCESS_KEY} = APP_CONFIG;
 
 export const userReqBodyValidation = async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body, "this body")
     try {
         if (req.params.userAuthId !==  USER_ACCESS_KEY) throw new Error(errorMessage.ApiAccessDenied);
         if (!req.body.userSignup && !req.body.userLogin && !req.body.userUpdate && !req.body.userConfirm) throw new Error(errorMessage.UnproccessedBody)

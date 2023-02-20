@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { userReqBodyValidation } from "../../middlewares/request-body-validation";
-import { userAuthMiddleware } from "./middleware/user-auth";
+import { userAuthMiddleware } from "../../middlewares/user-auth";
 import {signupUserController, loginUserController, updateUserProfileController, confirmNewUserController} from "./user-controller";
 
 const userRouter =  Router();

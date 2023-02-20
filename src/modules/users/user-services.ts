@@ -35,7 +35,6 @@ class UserCreadentialServices {
             const token = await user.generateAuthToken(); // second token may be permanent token
              return {user, token}
           } catch (error: any) {
-            console.log(error.message, '--',error.response.data, 'this error', Object.keys(error.response))
             throw error;
           }
     };

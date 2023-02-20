@@ -1,6 +1,7 @@
 import userValidation from "./user-validation-schema";
 import complaintBody from ".";
 import productValidation from "./product-body-validation"
+import complaintValidationObject from "./complaint-body-validation";
 
 const validation = (validationType:string, data:any): any => {
     switch(validationType) {
@@ -10,9 +11,9 @@ const validation = (validationType:string, data:any): any => {
         case "userUpdate": return userValidation.userUpdateValidationSchema.validateAsync(data, {abortEarly: false});
         case "userRemove": return userValidation.userDeleteProfileValidationSchema.validateAsync(data);
 
-        case "newComplaint": return complaintBody.vendoreLoginValidationSchema.validateAsync(data, {abortEarly: false});
-        case "vendorSignup": return complaintBody.vendoreSignupValidationSchema.validateAsync(data, {abortEarly: false});
-        case "createProduct": return productValidation.newProductValidationSchema.validateAsync(data, {abortEarly: false})
+        case "newComplaint": return complaintValidationObject.newComplaintValidationSchema.validateAsync(data, {abortEarly: false});
+        // case "vendorSignup": return complaintBody.vendoreSignupValidationSchema.validateAsync(data, {abortEarly: false});
+        // case "createProduct": return productValidation.newProductValidationSchema.validateAsync(data, {abortEarly: false})
         default: return "case not found!"
     }
 };
